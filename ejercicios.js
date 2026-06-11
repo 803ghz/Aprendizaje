@@ -41,13 +41,20 @@ export const esPasswordSegura = (password) => {
 // Devuelve "frío" si los grados son menos de 20, y "calor" si son 20 o más.
 // Ejemplos: clasificaTemp(10) -> "frío",  clasificaTemp(25) -> "calor"
 export const clasificaTemp = (grados) => {
-  
+  if (grados < 20) {
+    return "frío";
+  }
+  return "calor";
 };
 
 // 5 · esAdolescente(edad)
 // Devuelve true si la edad está entre 13 y 17, ambos incluidos.
 // Ejemplos: esAdolescente(15) -> true,  esAdolescente(18) -> false,  esAdolescente(12) -> false
 export const esAdolescente = (edad) => {
+  if (edad >= 13 && edad <= 17) {
+    return true;
+  }
+  return false;
 };
 
 // 6 · nota(puntos)
@@ -58,22 +65,42 @@ export const esAdolescente = (edad) => {
 //   9 o más               -> "sobresaliente"
 // Ejemplos: nota(4) -> "suspenso",  nota(7) -> "notable",  nota(10) -> "sobresaliente"
 export const nota = (puntos) => {
-  // TODO
+  if(puntos < 5 ) {
+    return "suspenso";
+  }
+
+  if (puntos >= 5 && puntos < 7) {
+    return "aprobado";
+  }
+
+  if (puntos >= 7 && puntos < 9){
+    return "notable";
+  } else {
+    return "sobresaliente"
+  }
 };
 
 // 7 · tieneArroba(email)
 // Devuelve true si el texto contiene el carácter "@".
 // Ejemplos: tieneArroba("a@b.com") -> true,  tieneArroba("hola") -> false
 export const tieneArroba = (email) => {
-
-
-};
+if(email.includes("@")) {
+  return true;
+} else {
+  return false;
+}};
 
 // 8 · cuentaPares(numeros)
 // Recibe un array de números y devuelve CUÁNTOS son pares.
 // Ejemplos: cuentaPares([1, 2, 3, 4]) -> 2,  cuentaPares([1, 3, 5]) -> 0
 export const cuentaPares = (numeros) => {
-  // TODO
+  let cuentaPares = 0;
+  for (let i = 0; i < numeros.length; i++) {
+    if (numeros[i] % 2 === 0) {
+      cuentaPares++;
+    }
+  }
+  return cuentaPares;
 };
 
 // 9 · sumaArray(numeros)
@@ -81,13 +108,24 @@ export const cuentaPares = (numeros) => {
 // Un array vacío suma 0.
 // Ejemplos: sumaArray([1, 2, 3]) -> 6,  sumaArray([]) -> 0
 export const sumaArray = (numeros) => {
-  // TODO
-};
+
+  return numeros.reduce((acc, currentValue) => acc + currentValue, 0);
+};   
 
 // 10 · todosPositivos(numeros)
 // Devuelve true si TODOS los números del array son positivos (mayores que 0).
 // Un array vacío devuelve true (ninguno incumple la regla).
 // Ejemplos: todosPositivos([1, 2, 3]) -> true,  todosPositivos([1, -2, 3]) -> false
 export const todosPositivos = (numeros) => {
-  // TODO
+  if (numeros === 0) {
+    return true;
+  }
+
+  for (let i = 0; i < numeros.length; i++) {
+    if (numeros[i] <= 0) {
+      return false;
+    }
+  }
+
+  return true;
 };
