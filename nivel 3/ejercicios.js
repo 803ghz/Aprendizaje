@@ -36,7 +36,11 @@ export const presentacion = (persona) => {
 // Ejemplos: disponible({ activo: true, stock: 5 }) -> true
 //           disponible({ activo: true, stock: 0 }) -> false
 export const disponible = (producto) => {
-  // TODO
+  if (producto.activo && producto.stock > 0) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 // 5 · precioRebajado(producto)
@@ -45,7 +49,11 @@ export const disponible = (producto) => {
 // Ejemplos: precioRebajado({ precio: 100, oferta: true }) -> 90
 //           precioRebajado({ precio: 100, oferta: false }) -> 100
 export const precioRebajado = (producto) => {
-  // TODO
+  if (producto.oferta) {
+    return producto.precio - 10;
+  } else {
+    return producto.precio;
+  }
 };
 
 // 6 · nombres(personas)
@@ -53,7 +61,7 @@ export const precioRebajado = (producto) => {
 // Devuelve un array con SOLO los nombres.
 // Ejemplo: nombres([{ nombre: "Ada" }, { nombre: "Leo" }]) -> ["Ada", "Leo"]
 export const nombres = (personas) => {
-  // TODO
+  return personas.map((persona) => persona.nombre);
 };
 
 // 7 · mayoresDeEdad(personas)
@@ -62,7 +70,7 @@ export const nombres = (personas) => {
 // Ejemplo: mayoresDeEdad([{ nombre: "Ada", edad: 30 }, { nombre: "Leo", edad: 15 }])
 //          -> [{ nombre: "Ada", edad: 30 }]
 export const mayoresDeEdad = (personas) => {
-  // TODO
+  return personas.filter((persona) => persona.edad >= 18);
 };
 
 // 8 · buscarPorId(productos, id)
@@ -70,7 +78,7 @@ export const mayoresDeEdad = (personas) => {
 // Devuelve el primer producto cuyo id coincida. Si no hay ninguno, devuelve undefined.
 // Ejemplo: buscarPorId([{ id: 1 }, { id: 2 }], 2) -> { id: 2 }
 export const buscarPorId = (productos, id) => {
-  // TODO
+  return productos.find((producto) => producto.id === id);
 };
 
 // 9 · totalCarrito(productos)
@@ -78,7 +86,7 @@ export const buscarPorId = (productos, id) => {
 // Devuelve la suma de todos los precios. Un carrito vacío suma 0.
 // Ejemplo: totalCarrito([{ precio: 10 }, { precio: 20 }, { precio: 5 }]) -> 35
 export const totalCarrito = (productos) => {
-  // TODO
+  return productos.reduce((suma, producto) => suma + producto.precio, 0);
 };
 
 // 10 · nombresEnOferta(productos)
@@ -86,5 +94,8 @@ export const totalCarrito = (productos) => {
 // Devuelve un array con los nombres SOLO de los que están en oferta.
 // Ejemplo: nombresEnOferta([{ nombre: "A", oferta: true }, { nombre: "B", oferta: false }]) -> ["A"]
 export const nombresEnOferta = (productos) => {
-  // TODO
+  if (productos.length === 0) {
+    return [];
+  }
+  return productos.filter((producto) => producto.oferta).map((producto) => producto.nombre);  
 };
